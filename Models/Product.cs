@@ -20,9 +20,7 @@ namespace Amdaris_Backend.Models
             get
             {
                 string description = "Awesome product with the name {0}, that has a price of {1}. Hurry! As of today, {2}, there are only {3} left in stock!";
-                string description2 = string.Format(description, Title, PriceFormatted, DateFormatted, Amount);
-
-                Console.WriteLine(description2);
+                string description2 = string.Format(description, Title, PriceFormatted, CreatedAtFormatted, Amount);
 
                 return description2;
             }
@@ -30,7 +28,7 @@ namespace Amdaris_Backend.Models
 
         public DateTime CreatedAt { get; set; }
 
-        public string DateFormatted
+        public string CreatedAtFormatted
         {
             get
             {

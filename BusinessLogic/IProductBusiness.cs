@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Amdaris_Backend.Data
+namespace Amdaris_Backend.BusinessLogic
 {
-    public interface IProductsRepo
+    public interface IProductBusiness
     {
-        IEnumerable<Product> GetAllProducts();
+        IList<Product> GetAllProducts();
         Product GetProductById(int id);
     }
 }

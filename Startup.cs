@@ -1,3 +1,4 @@
+using Amdaris_Backend.BusinessLogic;
 using Amdaris_Backend.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +31,8 @@ namespace Amdaris_Backend
         {
 
             services.AddControllers();
-            services.AddScoped<IProductsRepo, MockProductsRepo>();
+            services.AddTransient<IProductsRepo, MockProductsRepo>();
+            services.AddTransient<IProductBusiness, ProductBusiness>();
 
             services.AddSwaggerGen(c =>
             {
@@ -49,11 +51,6 @@ namespace Amdaris_Backend
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Amdaris_Backend v1"));
             }
-
-            CultureInfo cultureInfo = new CultureInfo("en-US");
-            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
-
 
             app.UseHttpsRedirection();
 

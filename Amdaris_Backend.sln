@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amdaris_Backend", "Amdaris_Backend.csproj", "{BF12A677-13B3-4D84-A347-9B5DE9DF210A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amdaris_Backend", "Amdaris_Backend.csproj", "{BF12A677-13B3-4D84-A347-9B5DE9DF210A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{04134113-4E10-4439-BE19-B3012494CE5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BF12A677-13B3-4D84-A347-9B5DE9DF210A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF12A677-13B3-4D84-A347-9B5DE9DF210A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF12A677-13B3-4D84-A347-9B5DE9DF210A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04134113-4E10-4439-BE19-B3012494CE5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04134113-4E10-4439-BE19-B3012494CE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04134113-4E10-4439-BE19-B3012494CE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04134113-4E10-4439-BE19-B3012494CE5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
