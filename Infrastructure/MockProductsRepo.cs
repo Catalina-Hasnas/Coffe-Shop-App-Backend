@@ -14,7 +14,12 @@ namespace Infrastructure
             new Product { Id = 2, Amount = 6, Image = "https://via.placeholder.com/320x280", Price = 210, PriceFormatted = "210$", Title = "Second Product", CreatedAt = DateTime.Now  },
             new Product { Id = 3, Amount = 6, Image = "https://via.placeholder.com/320x280", Price = 220, PriceFormatted = "220$", Title = "Third Product", CreatedAt = DateTime.Now  }
             };
-    
+
+        public void AddProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             return _products;

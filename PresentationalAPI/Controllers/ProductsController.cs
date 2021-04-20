@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application;
 using Domain;
+using MediatR;
+using Application.Queries.ProductQueries;
 
 namespace PresentationalAPI.Controllers
 {
@@ -16,24 +18,29 @@ namespace PresentationalAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductsRepo _repository;
+        private readonly IMediator _mediator;
 
-        public ProductsController(IProductsRepo repository)
+        public ProductsController(IMediator mediator)
         {
-            _repository = repository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
         {
-            var productItems = _repository.GetAllProducts();
+            var input = new GetAllProductsQuery();
+            var productItems = await _mediator.Send(input);
             return Ok(productItems);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Product> GetProductById(int id)
+        public async Task<ActionResult<Product>> GetProductById(int id)
         {
-            var productItem = _repository.GetProductById(id);
+            var input = new GetProductByIdQuery
+            {
+                Id = id
+            };
+            var productItem = await _mediator.Send(input);
             return Ok(productItem);
         }
     }

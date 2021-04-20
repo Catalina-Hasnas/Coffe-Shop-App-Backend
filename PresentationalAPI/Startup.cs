@@ -1,5 +1,7 @@
 using Application;
+using Application.Queries.ProductQueries;
 using Infrastructure;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,11 +31,13 @@ namespace PresentationalAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IProductsRepo, MockProductsRepo>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PresentationalAPI", Version = "v1" });
             });
+            services.AddMediatR(typeof(GetAllProductsQuery).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
