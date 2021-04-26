@@ -38,6 +38,7 @@ namespace PresentationalAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PresentationalAPI", Version = "v1" });
             });
             services.AddMediatR(typeof(GetAllProductsQuery).Assembly);
+            services.AddMediatR(typeof(GetProductByIdQuery).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
