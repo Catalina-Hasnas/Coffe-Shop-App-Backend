@@ -3,9 +3,8 @@ using System.Globalization;
 
 namespace Domain
 {
-    public class Product
+    public class Product: Entity<int>
     {
-        public int Id { get; set; }
         public int Amount { get; set; }
         public string Image { get; set; }
         public int Price { get; set; }
@@ -32,6 +31,9 @@ namespace Domain
                 return CreatedAt.ToString("U", CultureInfo.CreateSpecificCulture("en-US"));
             }
         }
+        public virtual Category Category { get; set; }
+
+        public int CategoryId { get; set; }
 
     }
 }

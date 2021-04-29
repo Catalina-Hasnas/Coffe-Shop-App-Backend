@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Application.DtoModels;
+using Domain;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.ProductQueries
 {
-    public class GetAllProductsQuery : IRequest<IEnumerable<Product>>
+    public class GetAllProductsQuery : IRequest<IEnumerable<ProductDto>>
     {
     }
 }

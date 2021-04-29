@@ -3,26 +3,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Domain;
 using MediatR;
-using Application.Queries.ProductQueries;
-using Application.DtoModels;
+using Application.Queries.CategoriesQueries;
 
 namespace PresentationalAPI.Controllers
 {
-    [Route("api/products")]
+    [Route("api/categories")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ProductsController(IMediator mediator)
+        public CategoriesController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllCategories()
         {
-            var input = new GetAllProductsQuery();
+            var input = new GetAllCategoriesQuery();
             var productItems = await _mediator.Send(input);
             return Ok(productItems);
         }
@@ -30,7 +29,7 @@ namespace PresentationalAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProductById(int id)
         {
-            var input = new GetProductByIdQuery
+            var input = new GetCategoryByIdQuery
             {
                 Id = id
             };

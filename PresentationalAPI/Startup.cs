@@ -1,6 +1,8 @@
 using Application;
+using Application.Queries.CategoriesQueries;
 using Application.Queries.ProductQueries;
 using Infrastructure;
+using Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +32,10 @@ namespace PresentationalAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IProductsRepo, MockProductsRepo>();
+            services.AddTransient<IProductsRepo, ProductsRepo>();
+            services.AddTransient<ICategoriesRepo, CategoriesRepo>();
+
+            services.AddDbContext<ECommerceDbContext>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -38,7 +43,6 @@ namespace PresentationalAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PresentationalAPI", Version = "v1" });
             });
             services.AddMediatR(typeof(GetAllProductsQuery).Assembly);
-            services.AddMediatR(typeof(GetProductByIdQuery).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
