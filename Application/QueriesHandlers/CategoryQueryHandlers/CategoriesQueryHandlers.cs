@@ -33,6 +33,7 @@ namespace Application.QueriesHandlers.CategoryQueryHandlers
                     Amount = p.Amount,
                     Image = p.Image,
                     Title = p.Title,
+                    Price = p.Price,
                     CreatedAt = p.CreatedAt,
                     Category = new CategoryDto{
                         Id = c.Id,
@@ -55,6 +56,7 @@ namespace Application.QueriesHandlers.CategoryQueryHandlers
                     Amount = p.Amount,
                     Image = p.Image,
                     Title = p.Title,
+                    Price = p.Price,
                     CreatedAt = p.CreatedAt,
                     Category = new CategoryDto
                     {
