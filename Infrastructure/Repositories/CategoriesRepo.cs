@@ -1,5 +1,6 @@
 ﻿using Application;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,11 @@ namespace Infrastructure.Repositories
             _context.Update(Category);
         }
 
-        public IEnumerable<Category> GetAllCategories()
+        public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            return _context.Categories.ToList();
+            return await _context.Categories
+                        .Include((p) => p.Products)
+                        .ToListAsync();
         }
 
         public Category GetCategoryById(int id)

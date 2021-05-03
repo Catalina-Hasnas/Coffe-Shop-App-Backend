@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Application.DtoModels;
+using Domain;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries.CategoriesQueries
 {
-    public class GetAllCategoriesQuery : IRequest<IEnumerable<Category>>
+    public class GetAllCategoriesQuery : IRequest<IEnumerable<CategoryDto>>
     {
     }
 }

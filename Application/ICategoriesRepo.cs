@@ -9,7 +9,7 @@ namespace Application
 {
     public interface ICategoriesRepo
     {
-        IEnumerable<Category> GetAllCategories();
+        Task<IEnumerable<Category>> GetAllCategories();
         Category GetCategoryById(int id);
         void AddCategory(Category category);
         void UpdateCategory(Category category);

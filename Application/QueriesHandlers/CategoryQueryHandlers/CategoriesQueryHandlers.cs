@@ -1,4 +1,5 @@
-﻿using Application.Queries.CategoriesQueries;
+﻿using Application.DtoModels;
+using Application.Queries.CategoriesQueries;
 using Domain;
 using MediatR;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.QueriesHandlers.CategoryQueryHandlers
 {
-    public class CategoryQueryHadler : IRequestHandler<GetAllCategoriesQuery, IEnumerable<Category>>, IRequestHandler<GetCategoryByIdQuery, Category>
+    public class CategoryQueryHadler : IRequestHandler<GetAllCategoriesQuery, IEnumerable<CategoryDto>>, IRequestHandler<GetCategoryByIdQuery, Category>
     {
         private readonly ICategoriesRepo _categoryRepository;
 
@@ -18,10 +19,27 @@ namespace Application.QueriesHandlers.CategoryQueryHandlers
         {
             _categoryRepository = categoryRepository;
         }
-        public async Task<IEnumerable<Category>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CategoryDto>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var result = _categoryRepository.GetAllCategories();
-            return await Task.FromResult(result);
+            var result = await _categoryRepository.GetAllCategories();
+
+            return result.Select(c => new CategoryDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Products = c.Products.Select(p => new ProductDto
+                {
+                    Id = p.Id,
+                    Amount = p.Amount,
+                    Image = p.Image,
+                    Title = p.Title,
+                    CreatedAt = p.CreatedAt,
+                    Category = new CategoryDto{
+                        Id = c.Id,
+                        Name = c.Name
+                    }
+                }).ToList()
+            }).ToList();
         }
 
         public async Task<Category> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
@@ -29,5 +47,7 @@ namespace Application.QueriesHandlers.CategoryQueryHandlers
             var result = _categoryRepository.GetCategoryById(request.Id);
             return await Task.FromResult(result);
         }
+        
     }
 }
+

@@ -19,7 +19,7 @@ namespace PresentationalAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAllCategories()
+        public async Task<ActionResult<IEnumerable<Category>>> GetAllCategories()
         {
             var input = new GetAllCategoriesQuery();
             var productItems = await _mediator.Send(input);
@@ -27,7 +27,7 @@ namespace PresentationalAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProductById(int id)
+        public async Task<ActionResult<Category>> GetCategoryById(int id)
         {
             var input = new GetCategoryByIdQuery
             {

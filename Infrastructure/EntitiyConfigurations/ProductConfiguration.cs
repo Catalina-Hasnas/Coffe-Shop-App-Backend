@@ -22,11 +22,6 @@ namespace Infrastructure.EntitiyConfigurations
                    .HasColumnType("date")
                    .IsRequired();
 
-            //builder.Property(x => x.CreatedAtFormatted)
-            //       .HasColumnType("varchar")
-            //       .IsRequired()
-            //       .HasMaxLength(200);
-
             builder.Property(x => x.Image)
                     .HasColumnType("varchar")
                    .IsRequired()
@@ -44,11 +39,6 @@ namespace Infrastructure.EntitiyConfigurations
                    .HasColumnType("varchar")
                    .IsRequired()
                    .HasMaxLength(200);
-
-            //builder.Property(x => x.Description)
-            //       .HasColumnType("varchar")
-            //       .IsRequired()
-            //       .HasMaxLength(400);
 
             builder.ToTable("Products");
         }
