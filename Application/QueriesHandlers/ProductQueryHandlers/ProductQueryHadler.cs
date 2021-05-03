@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.QueriesHandlers.ProductQueryHandlers
 {
-    public class ProductQueryHadler : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>, IRequestHandler<GetProductByIdQuery, Product>
+    public class ProductQueryHadler : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>, IRequestHandler<GetProductByIdQuery, ProductDto>
     {
         private readonly IProductsRepo _productRepository;
 
@@ -40,10 +40,22 @@ namespace Application.QueriesHandlers.ProductQueryHandlers
                          }).ToList();
         }
 
-        public async Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            var result = _productRepository.GetProductById(request.Id);
-            return await Task.FromResult(result);
+            var result = await _productRepository.GetProductById(request.Id);
+            return new ProductDto {
+                Id = result.Id,
+                Amount = result.Amount,
+                Image = result.Image,
+                Price = result.Price,
+                Title = result.Title,
+                CreatedAt = result.CreatedAt,
+                Category = new CategoryDto
+                {
+                    Id = result.Category.Id,
+                    Name = result.Category.Name
+                }
+            };
         }
     }
 }

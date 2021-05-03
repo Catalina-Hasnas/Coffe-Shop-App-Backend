@@ -10,7 +10,7 @@ namespace Application
     public interface ICategoriesRepo
     {
         Task<IEnumerable<Category>> GetAllCategories();
-        Category GetCategoryById(int id);
+        Task<Category> GetCategoryById(int id);
         void AddCategory(Category category);
         void UpdateCategory(Category category);
         void DeleteCategory(Category category);

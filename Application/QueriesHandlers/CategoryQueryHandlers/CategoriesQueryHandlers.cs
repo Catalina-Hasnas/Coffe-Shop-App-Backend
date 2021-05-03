@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.QueriesHandlers.CategoryQueryHandlers
 {
-    public class CategoryQueryHadler : IRequestHandler<GetAllCategoriesQuery, IEnumerable<CategoryDto>>, IRequestHandler<GetCategoryByIdQuery, Category>
+    public class CategoryQueryHadler : IRequestHandler<GetAllCategoriesQuery, IEnumerable<CategoryDto>>, IRequestHandler<GetCategoryByIdQuery, CategoryDto>
     {
         private readonly ICategoriesRepo _categoryRepository;
 
@@ -42,12 +42,30 @@ namespace Application.QueriesHandlers.CategoryQueryHandlers
             }).ToList();
         }
 
-        public async Task<Category> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+        public async Task<CategoryDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
-            var result = _categoryRepository.GetCategoryById(request.Id);
-            return await Task.FromResult(result);
+            var result = await _categoryRepository.GetCategoryById(request.Id);
+            return new CategoryDto
+            {
+                Id = result.Id,
+                Name = result.Name,
+                Products = result.Products.Select(p => new ProductDto
+                {
+                    Id = p.Id,
+                    Amount = p.Amount,
+                    Image = p.Image,
+                    Title = p.Title,
+                    CreatedAt = p.CreatedAt,
+                    Category = new CategoryDto
+                    {
+                        Id = result.Id,
+                        Name = result.Name
+                    }
+                }).ToList()
+            };
         }
         
+
     }
 }
 

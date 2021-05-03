@@ -39,11 +39,9 @@ namespace Infrastructure.Repositories
                         .ToListAsync();
         }
 
-        public Category GetCategoryById(int id)
+        public async Task<Category> GetCategoryById(int id)
         {
-            return _context.Categories.Find(id);
+            return await _context.Categories.Include(c => c.Products).FirstOrDefaultAsync(c => c.Id == id);
         }
-
-
     }
 }

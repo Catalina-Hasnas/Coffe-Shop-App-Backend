@@ -40,11 +40,11 @@ namespace Infrastructure.Repositories
                         .ToListAsync();
         }
 
-        public Product GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
-            return _context.Products.Find(id);
+            return await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+                    
         }
-
         
     }
 }

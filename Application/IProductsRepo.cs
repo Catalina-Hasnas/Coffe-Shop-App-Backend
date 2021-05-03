@@ -9,7 +9,7 @@ namespace Application
     public interface IProductsRepo
     {
         Task<IEnumerable<Product>> GetAllProducts();
-        Product GetProductById(int id);
+        Task<Product> GetProductById(int id);
         void AddProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
