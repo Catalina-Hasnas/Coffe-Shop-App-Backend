@@ -35,11 +35,6 @@ namespace Infrastructure.EntitiyConfigurations
                    .HasColumnType("int")
                    .IsRequired();
 
-            builder.Property(x => x.PriceFormatted)
-                   .HasColumnType("varchar")
-                   .IsRequired()
-                   .HasMaxLength(200);
-
             builder.ToTable("Products");
         }
     }
