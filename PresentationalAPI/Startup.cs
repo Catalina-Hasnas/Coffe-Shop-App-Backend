@@ -22,9 +22,12 @@ namespace PresentationalAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _environment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            _environment = environment;
         }
 
         public IConfiguration Configuration { get; }
@@ -37,6 +40,14 @@ namespace PresentationalAPI
 
             services.AddDbContext<ECommerceDbContext>();
 
+            services.AddCors(options => 
+            {
+                options.AddDefaultPolicy(policy => 
+                {
+                    policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                });
+            })
+;
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -57,6 +68,11 @@ namespace PresentationalAPI
 
             app.UseHttpsRedirection();
 
+            if (env.IsDevelopment()) 
+            {
+                app.UseCors();
+            }
+            
             app.UseRouting();
 
             app.UseAuthorization();

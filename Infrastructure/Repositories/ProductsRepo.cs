@@ -42,7 +42,9 @@ namespace Infrastructure.Repositories
 
         public async Task<Product> GetProductById(int id)
         {
-            return await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Products
+                        .Include(p => p.Category)
+                        .FirstOrDefaultAsync(p => p.Id == id);
                     
         }
         
