@@ -18,6 +18,11 @@ namespace Infrastructure.EntitiyConfigurations
                    .WithOne(x => x.Order)
                    .HasForeignKey(x => x.OrderId);
 
+            builder.HasOne(x => x.Client)
+                   .WithMany(x => x.Orders)
+                   .HasForeignKey(x => x.ClientId)
+                   .IsRequired();
+
             builder.Property(x => x.CreatedAt)
                    .HasColumnType("date")
                    .IsRequired();

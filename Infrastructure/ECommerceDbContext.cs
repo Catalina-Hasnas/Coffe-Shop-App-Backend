@@ -24,6 +24,7 @@ namespace Infrastructure
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +50,9 @@ namespace Infrastructure
                 new Category { Id = 4, Name = "Sweeteners"},
                 new Category { Id = 5, Name = "Coffee Machines"}
             );
+
+            modelBuilder.Entity<Client>();
+            modelBuilder.Entity<Admin>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

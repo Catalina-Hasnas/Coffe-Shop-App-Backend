@@ -11,5 +11,7 @@ namespace Domain
         public DateTime CreatedAt { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
         public float TotalPrice { get; set; }
+        public Client Client { get; set; }
+        public int ClientId { get; set; }
     }
 }
