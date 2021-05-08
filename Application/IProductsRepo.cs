@@ -13,6 +13,6 @@ namespace Application
         void AddProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
-
+        Task Save();
     }
 }

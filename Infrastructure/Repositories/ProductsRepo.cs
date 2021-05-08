@@ -45,9 +45,11 @@ namespace Infrastructure.Repositories
             return await _context.Products
                         .Include(p => p.Category)
                         .FirstOrDefaultAsync(p => p.Id == id);
-                    
         }
-        
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }
 
