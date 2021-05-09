@@ -11,7 +11,7 @@ namespace Application.DtoModels
         public int Id { get; set; }
         public int Amount { get; set; }
         public string Image { get; set; }
-        public int Price { get; set; }       
+        public float Price { get; set; }       
         public string Title { get; set; }       
         public DateTime CreatedAt { get; set; }
         public CategoryDto Category { get; set; }

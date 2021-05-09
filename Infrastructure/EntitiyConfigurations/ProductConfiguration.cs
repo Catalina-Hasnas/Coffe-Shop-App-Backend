@@ -32,7 +32,7 @@ namespace Infrastructure.EntitiyConfigurations
                    .IsRequired();
 
             builder.Property(x => x.Price)
-                   .HasColumnType("int")
+                   .HasColumnType("decimal(8, 2)")
                    .IsRequired();
 
             builder.ToTable("Products");

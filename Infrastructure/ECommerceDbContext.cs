@@ -25,6 +25,7 @@ namespace Infrastructure
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Promotion> Promotions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,8 +52,14 @@ namespace Infrastructure
                 new Category { Id = 5, Name = "Coffee Machines"}
             );
 
-            modelBuilder.Entity<Client>();
-            modelBuilder.Entity<Admin>();
+            modelBuilder.Entity<Promotion>().HasData(
+                new Promotion { Id = 1, Discount = 50.55f, PromotionalText = "50.55$ discount", ProductId = 2 },
+                new Promotion { Id = 2, Discount = 20, PromotionalText = "20.00$ discount", ProductId = 9 },
+                new Promotion { Id = 3, Discount = 70.30f, PromotionalText = "70.30$ discount", ProductId = 3 }
+            );
+
+            modelBuilder.Entity<Client>().ToTable("Clients");
+            modelBuilder.Entity<Admin>().ToTable("Admins");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
