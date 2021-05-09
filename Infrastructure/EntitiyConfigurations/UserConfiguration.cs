@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EntitiyConfigurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
-    {
-        public void Configure(EntityTypeBuilder<User> builder)
-        {
-            builder.HasDiscriminator<string>("user_type")
-                    .HasValue<User>("user_base")
-                    .HasValue<Client>("client")
-                    .HasValue<Admin>("admin");
-        }
-    }
+    //public class UserConfiguration : IEntityTypeConfiguration<User>
+    //{
+    //    public void Configure(EntityTypeBuilder<User> builder)
+    //    {
+    //        builder.HasDiscriminator<string>("user_type")
+    //                .HasValue<User>("user_base")
+    //                .HasValue<Client>("client")
+    //                .HasValue<Admin>("admin");
+    //    }
+    //}
 }
