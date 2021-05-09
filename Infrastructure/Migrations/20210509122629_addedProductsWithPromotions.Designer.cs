@@ -4,14 +4,16 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ECommerceDbContext))]
-    partial class ECommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210509122629_addedProductsWithPromotions")]
+    partial class addedProductsWithPromotions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,8 +261,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(8,2)");
+                    b.Property<float>("Discount")
+                        .HasColumnType("real");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -279,21 +281,21 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Discount = 50.55m,
+                            Discount = 50.55f,
                             ProductId = 2,
                             PromotionalText = "50.55$ discount"
                         },
                         new
                         {
                             Id = 2,
-                            Discount = 20m,
+                            Discount = 20f,
                             ProductId = 9,
                             PromotionalText = "20.00$ discount"
                         },
                         new
                         {
                             Id = 3,
-                            Discount = 70.3m,
+                            Discount = 70.3f,
                             ProductId = 3,
                             PromotionalText = "70.30$ discount"
                         });

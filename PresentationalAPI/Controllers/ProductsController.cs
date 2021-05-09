@@ -27,6 +27,15 @@ namespace PresentationalAPI.Controllers
             return Ok(productItems);
         }
 
+        [HttpGet]
+        [Route("promotions")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAllProductsWithPromotion()
+        {
+            var input = new GetAllProductsWithPromotionQuery();
+            var productItems = await _mediator.Send(input);
+            return Ok(productItems);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProductById(int id)
         {

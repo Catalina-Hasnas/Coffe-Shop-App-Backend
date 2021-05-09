@@ -12,7 +12,9 @@ using System.Threading.Tasks;
 
 namespace Application.QueriesHandlers.ProductQueryHandlers
 {
-    public class ProductQueryHadler : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>, IRequestHandler<GetProductByIdQuery, ProductDto>
+    public class ProductQueryHadler : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>, 
+                                      IRequestHandler<GetProductByIdQuery, ProductDto>,
+                                      IRequestHandler<GetAllProductsWithPromotionQuery, IEnumerable<ProductDto>>
     {
         private readonly IProductsRepo _productRepository;
 
@@ -56,6 +58,25 @@ namespace Application.QueriesHandlers.ProductQueryHandlers
                     Name = result.Category.Name
                 }
             };
+        }
+        public async Task<IEnumerable<ProductDto>> Handle(GetAllProductsWithPromotionQuery request, CancellationToken cancellationToken)
+        {
+            var result = await _productRepository.GetAllProductsWithPromotion();
+
+            return result.Select(p => new ProductDto
+            {
+                Id = p.Id,
+                Amount = p.Amount,
+                Image = p.Image,
+                Price = p.Price,
+                Title = p.Title,
+                CreatedAt = p.CreatedAt,
+                Category = new CategoryDto
+                {
+                    Id = p.Category.Id,
+                    Name = p.Category.Name
+                }
+            }).ToList();
         }
     }
 }

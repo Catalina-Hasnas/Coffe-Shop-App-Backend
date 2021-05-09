@@ -34,14 +34,14 @@ namespace Infrastructure
 
             modelBuilder.Entity<Product>().HasData(
                 new Product { Id = 1, Amount = 5, Image = "https://i.ibb.co/6bgccSg/212.jpg", Price = 200, Title = "First Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 1 },
-                new Product { Id = 2, Amount = 6, Image = "https://i.ibb.co/KyQwzHG/21133206.jpg", Price = 210, Title = "Second Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 1 },
-                new Product { Id = 3, Amount = 6, Image = "https://i.ibb.co/kmctC6G/21256508.jpg", Price = 220, Title = "Third Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 1 },
+                new Product { Id = 2, Amount = 6, Image = "https://i.ibb.co/KyQwzHG/21133206.jpg", Price = 210, Title = "Second Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 1, PromotionId = 1 },
+                new Product { Id = 3, Amount = 6, Image = "https://i.ibb.co/kmctC6G/21256508.jpg", Price = 220, Title = "Third Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 1, PromotionId = 3 },
                 new Product { Id = 4, Amount = 6, Image = "https://i.ibb.co/KNFCs43/cosmetic-40.jpg", Price = 220, Title = "Fourth Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 2 },
                 new Product { Id = 5, Amount = 6, Image = "https://i.ibb.co/r6N7p8M/jar-03.jpg", Price = 220, Title = "Fifth Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 2 },
                 new Product { Id = 6, Amount = 6, Image = "https://i.ibb.co/X2gYjMN/jar-13.jpg", Price = 220, Title = "Sixth Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 3 },
                 new Product { Id = 7, Amount = 6, Image = "https://i.ibb.co/hcRbLBg/jar-24.jpg", Price = 220, Title = "Seventh Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 3 },
                 new Product { Id = 8, Amount = 6, Image = "https://i.ibb.co/mCMyJHD/jar-25.jpg", Price = 220, Title = "Eigth Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 4 },
-                new Product { Id = 9, Amount = 6, Image = "https://i.ibb.co/qJVPFxJ/jar-36.jpg", Price = 220, Title = "Nineth Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 5 }
+                new Product { Id = 9, Amount = 6, Image = "https://i.ibb.co/qJVPFxJ/jar-36.jpg", Price = 220, Title = "Nineth Product", CreatedAt = new DateTime(2021, 05, 06), CategoryId = 5, PromotionId = 2 }
             );
 
             modelBuilder.Entity<Category>().HasData(

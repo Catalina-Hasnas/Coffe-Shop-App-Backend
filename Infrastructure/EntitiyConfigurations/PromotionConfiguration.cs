@@ -16,6 +16,10 @@ namespace Infrastructure.EntitiyConfigurations
             builder.HasOne(x => x.Product)
                    .WithOne(x => x.Promotion)
                    .HasForeignKey<Promotion>(x => x.ProductId);
+
+            builder.Property(x => x.Discount)
+                   .HasColumnType("decimal(8, 2)")
+                   .IsRequired();
         }
     }
 }
