@@ -36,6 +36,8 @@ namespace Infrastructure.Repositories
         {
             return await _context.Categories
                         .Include((p) => p.Products)
+                        .ThenInclude(p => p.Promotion)
+                        .DefaultIfEmpty()
                         .ToListAsync();
         }
 
@@ -43,6 +45,8 @@ namespace Infrastructure.Repositories
         {
             return await _context.Categories
                         .Include(c => c.Products)
+                        .ThenInclude(p => p.Promotion)
+                        .DefaultIfEmpty()
                         .FirstOrDefaultAsync(c => c.Id == id);
         }
     }

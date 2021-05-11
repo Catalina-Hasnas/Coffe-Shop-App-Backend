@@ -13,6 +13,10 @@ namespace Infrastructure.EntitiyConfigurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.HasOne(x => x.Promotion)
+                   .WithOne(x => x.Product)
+                   .HasForeignKey<Promotion>(x => x.ProductId);
+
             builder.Property(x => x.Title)
                    .HasColumnType("varchar")
                    .IsRequired()

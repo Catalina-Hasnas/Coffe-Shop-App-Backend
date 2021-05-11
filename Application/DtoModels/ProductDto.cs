@@ -15,5 +15,6 @@ namespace Application.DtoModels
         public string Title { get; set; }       
         public DateTime CreatedAt { get; set; }
         public CategoryDto Category { get; set; }
+        public PromotionDto Promotion { get; set; }
     }
 }

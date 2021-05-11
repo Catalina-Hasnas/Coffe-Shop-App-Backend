@@ -38,8 +38,13 @@ namespace Application.QueriesHandlers.ProductQueryHandlers
                             {
                                 Id = p.Category.Id,
                                 Name = p.Category.Name
+                            },
+                            Promotion = p.Promotion == null ? null : new PromotionDto
+                            {
+                                Discount = p.Promotion.Discount,
+                                PromotionalText = p.Promotion.PromotionalText
                             }
-                         }).ToList();
+                        }).ToList();
         }
 
         public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
@@ -56,6 +61,11 @@ namespace Application.QueriesHandlers.ProductQueryHandlers
                 {
                     Id = result.Category.Id,
                     Name = result.Category.Name
+                },
+                Promotion = result.Promotion == null ? null : new PromotionDto
+                {
+                    Discount = result.Promotion.Discount,
+                    PromotionalText = result.Promotion.PromotionalText
                 }
             };
         }
@@ -75,7 +85,13 @@ namespace Application.QueriesHandlers.ProductQueryHandlers
                 {
                     Id = p.Category.Id,
                     Name = p.Category.Name
+                },
+                Promotion = new PromotionDto
+                {
+                    Discount = p.Promotion.Discount,
+                    PromotionalText = p.Promotion.PromotionalText
                 }
+
             }).ToList();
         }
     }
