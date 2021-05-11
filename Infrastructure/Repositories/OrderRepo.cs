@@ -16,9 +16,10 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public void AddOrder(Order order)
+        public async Task<int> AddOrder(Order order)
         {
-            _context.Orders.Add(order);
+            await _context.Orders.AddAsync(order);
+            return await _context.SaveChangesAsync();
         }
 
         public void DeleteOrder(Order order)

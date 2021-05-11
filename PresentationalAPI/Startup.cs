@@ -37,6 +37,7 @@ namespace PresentationalAPI
         {
             services.AddTransient<IProductsRepo, ProductsRepo>();
             services.AddTransient<ICategoriesRepo, CategoriesRepo>();
+            services.AddTransient<IOrderRepo, OrderRepo>();
 
             services.AddDbContext<ECommerceDbContext>();
 

@@ -1,4 +1,5 @@
 ﻿using Application.Commands.OrderCommands;
+using Domain;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,29 @@ using System.Threading.Tasks;
 
 namespace Application.CommandHandlers.CreateOrderCommandHandlers
 {
-    public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, bool>
+    public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int>
 
     {
-        public async Task<bool> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+        private readonly IOrderRepo _orderRepository;
+
+        public CreateOrderCommandHandler(IOrderRepo orderRepository)
         {
-            throw new NotImplementedException();
+            _orderRepository = orderRepository;
+        }
+
+        public async Task<int> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+        {
+            var newOrder = new Order();
+            newOrder.OrderItems = request.OrderItems.Select(o => new OrderItem
+            {
+                Order = newOrder,
+                ProductId = o.ProductId,
+                Quantity = o.Quantity,
+                UnitPrice = o.UnitPrice,
+            }).ToList();
+            newOrder.Client = new Client();
+
+            return await _orderRepository.AddOrder(newOrder);
         }
     }
 }

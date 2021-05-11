@@ -9,7 +9,7 @@ namespace Application
 {
     public interface IOrderRepo
     {
-        void AddOrder(Order order);
+        public Task<int> AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(Order order);
         Task SaveChanges();
