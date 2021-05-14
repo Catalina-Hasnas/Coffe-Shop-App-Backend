@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application;
+using Application.DtoModels;
 using Domain;
 
 namespace Infrastructure.Repositories

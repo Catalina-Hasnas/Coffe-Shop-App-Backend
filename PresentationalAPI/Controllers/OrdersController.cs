@@ -1,6 +1,5 @@
 ﻿using Application.Commands.OrderCommands;
 using Application.DtoModels;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,14 +22,10 @@ namespace PresentationalAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder(List<OrderItemDto> orderItems)
+        public async Task<ActionResult<OrderDto>> CreateOrder([FromBody] CreateOrderCommand command)
         {
-            var input = new CreateOrderCommand()
-            {
-                OrderItems = orderItems
-            };
-            var productItem = await _mediator.Send(input);
-            return Ok(productItem);
+            var orderItems = await _mediator.Send(command);
+            return Ok(orderItems);
         }
     }
 }

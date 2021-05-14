@@ -1,4 +1,5 @@
 ﻿using Application;
+using Application.DtoModels;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -16,27 +17,22 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<int> AddOrder(Order order)
+        public async Task<Order> AddOrder(Order order)
         {
-            await _context.Orders.AddAsync(order);
-            return await _context.SaveChangesAsync();
+            var newOrder = await _context.Orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return newOrder.Entity;
         }
 
-        public void DeleteOrder(Order order)
-        {
-            _context.Orders.Remove(order);
-        }
+        //public void DeleteOrder(Order order)
+        //{
+        //    _context.Orders.Remove(order);
+        //}
 
-        public void UpdateOrder(Order order)
-        {
-            _context.Orders.Update(order);
-        }
+        //public void UpdateOrder(Order order)
+        //{
+        //    _context.Orders.Update(order);
+        //}
 
-        public Task SaveChanges()
-        {
-            return _context.SaveChangesAsync();
-        }
-
-        
     }
 }

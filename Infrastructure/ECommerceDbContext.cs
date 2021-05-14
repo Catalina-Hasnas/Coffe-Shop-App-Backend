@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Application.DtoModels;
+using Domain;
 using Infrastructure.EntitiyConfigurations;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Commands.OrderCommands
 {
-    public class CreateOrderCommand : IRequest<int>
+    public class CreateOrderCommand : IRequest<OrderDto>
     {
         public List<OrderItemDto> OrderItems {get; set;}
     }
