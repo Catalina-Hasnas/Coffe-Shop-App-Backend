@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,15 @@ namespace Application.DtoModels
         public DateTime CreatedAt { get; set; }
         public CategoryDto Category { get; set; }
         public PromotionDto Promotion { get; set; }
+
+        public static ProductDto From(Product product) => new()
+        {
+            Id = product.Id,
+            Title = product.Title,
+            Amount = product.Amount,
+            Image = product.Image,
+            CreatedAt = product.CreatedAt,
+        };
+
     }
 }

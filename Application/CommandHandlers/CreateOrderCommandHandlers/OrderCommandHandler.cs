@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Application.CommandHandlers.CreateOrderCommandHandlers
 {
-    public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, OrderDto>
+    public class OrderCommandHandler : IRequestHandler<CreateOrderCommand, OrderDto>
 
     {
         private readonly IOrderRepo _orderRepository;
 
-        public CreateOrderCommandHandler(IOrderRepo orderRepository)
+        public OrderCommandHandler(IOrderRepo orderRepository)
         {
             _orderRepository = orderRepository;
         }

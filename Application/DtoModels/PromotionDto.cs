@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,13 @@ namespace Application.DtoModels
         public float Discount { get; set; }
         public string PromotionalText { get; set; }
         public virtual ProductDto Product { get; set; }
+
+        public static PromotionDto From(Promotion promotion) => new()
+        {
+            Discount = promotion.Discount,
+            PromotionalText = promotion.PromotionalText,
+        };
+
+
     }
 }

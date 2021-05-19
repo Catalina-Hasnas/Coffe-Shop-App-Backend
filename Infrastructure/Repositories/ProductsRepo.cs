@@ -18,9 +18,13 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public void AddProduct(Product product)
+        public IQueryable<Product> Read() => _context.Set<Product>();
+
+        public async Task<Product> AddProduct(Product product)
         {
-            _context.Products.Add(product);
+            var newProduct = await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
+            return newProduct.Entity;
         }
 
         public void DeleteProduct(Product product)
@@ -30,7 +34,7 @@ namespace Infrastructure.Repositories
 
         public void UpdateProduct(Product product)
         {
-            _context.Products.Update(product);
+             _context.Products.Update(product);
         }
 
         public async Task<IEnumerable<Product>> GetAllProducts()

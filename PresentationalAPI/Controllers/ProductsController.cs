@@ -5,6 +5,7 @@ using Domain;
 using MediatR;
 using Application.Queries.ProductQueries;
 using Application.DtoModels;
+using Application.Commands.ProductCommands;
 
 namespace PresentationalAPI.Controllers
 {
@@ -45,6 +46,22 @@ namespace PresentationalAPI.Controllers
             };
             var productItem = await _mediator.Send(input);
             return Ok(productItem);
+        }
+        [HttpPost]
+        public async Task<ActionResult<OrderDto>> CreateOrder([FromBody] AddProductCommand command)
+        {
+            var product = await _mediator.Send(command);
+            return Ok(product);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ProductDto>> Put(int id, [FromBody] UpdateProductCommand command)
+        {
+            command.Id = id;
+
+            var product = await _mediator.Send(command);
+
+            return Ok(product);
         }
     }
 }
