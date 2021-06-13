@@ -14,7 +14,8 @@ namespace Application.CommandHandlers.ProductCommandHandlers
 {
     class ProductCommandHandler : 
         IRequestHandler<AddProductCommand, ProductDto>,
-        IRequestHandler<UpdateProductCommand, ProductDto>
+        IRequestHandler<UpdateProductCommand, ProductDto>,
+        IRequestHandler<DeleteProductCommand>
     {
         private readonly IProductsRepo _productsRepository;
         private readonly ICategoriesRepo _categoriesRepository;
@@ -36,7 +37,7 @@ namespace Application.CommandHandlers.ProductCommandHandlers
                 Title = request.Title,
                 CreatedAt = DateTime.Now,
                 CategoryId = request.CategoryId,
-
+                PromotionId = request.PromotionId,
             };
 
             await _productsRepository.AddProduct(newProduct);
@@ -59,12 +60,26 @@ namespace Application.CommandHandlers.ProductCommandHandlers
             product.Price = request.Price;
             product.Title = request.Title;
             product.CategoryId = request.CategoryId;
+            product.PromotionId = request.PromotionId;
 
             _productsRepository.UpdateProduct(product);
 
             await _productsRepository.Save();
 
             return ProductDto.From(product);
+        }
+
+        public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+        {
+            var product = await _productsRepository.Read().FirstOrDefaultAsync(p => p.Id == request.Id);
+
+            if (product != null)
+            {
+                _productsRepository.DeleteProduct(product);
+            }
+            await _productsRepository.Save();
+
+            return Unit.Value;
         }
     }
 
