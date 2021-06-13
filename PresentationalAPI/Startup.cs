@@ -1,6 +1,7 @@
 using Application;
 using Application.Queries.CategoriesQueries;
 using Application.Queries.ProductQueries;
+using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Repositories;
 using MediatR;
@@ -38,6 +39,7 @@ namespace PresentationalAPI
             services.AddTransient<IProductsRepo, ProductsRepo>();
             services.AddTransient<ICategoriesRepo, CategoriesRepo>();
             services.AddTransient<IOrderRepo, OrderRepo>();
+            services.AddTransient<IPromotionsRepo, PromotionsRepo>();
 
             services.AddDbContext<ECommerceDbContext>();
 
@@ -49,7 +51,11 @@ namespace PresentationalAPI
                 });
             })
 ;
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(s => {
+                    s.RegisterValidatorsFromAssemblyContaining<Startup>();
+                    s.DisableDataAnnotationsValidation = true;
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PresentationalAPI", Version = "v1" });
