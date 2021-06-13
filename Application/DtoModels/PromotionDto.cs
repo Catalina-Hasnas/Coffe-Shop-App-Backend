@@ -9,14 +9,14 @@ namespace Application.DtoModels
 {
     public class PromotionDto
     {
+        public int Id { get; set; }
         public float Discount { get; set; }
         public string PromotionalText { get; set; }
-        public virtual ProductDto Product { get; set; }
-
         public static PromotionDto From(Promotion promotion) => new()
         {
             Discount = promotion.Discount,
             PromotionalText = promotion.PromotionalText,
+            Id = promotion.Id
         };
 
 

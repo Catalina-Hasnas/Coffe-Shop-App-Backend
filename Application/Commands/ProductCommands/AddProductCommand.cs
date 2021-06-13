@@ -1,4 +1,5 @@
 ﻿using Application.DtoModels;
+using Domain;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace Application.Commands.ProductCommands
         public float Price { get; set; }
         public string Title { get; set; }
         public int CategoryId { get; set; }
+        public int? PromotionId { get; set; }
     }
 }

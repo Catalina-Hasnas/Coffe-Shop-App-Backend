@@ -13,6 +13,9 @@ namespace Infrastructure.EntitiyConfigurations
     {
         public void Configure(EntityTypeBuilder<Promotion> builder)
         {
+            builder.HasMany(x => x.Products)
+                   .WithOne(x => x.Promotion)
+                   .HasForeignKey(x => x.PromotionId);
 
             builder.Property(x => x.Discount)
                    .HasColumnType("decimal(8, 2)")

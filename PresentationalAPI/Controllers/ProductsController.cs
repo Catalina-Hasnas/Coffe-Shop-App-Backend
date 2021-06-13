@@ -48,14 +48,15 @@ namespace PresentationalAPI.Controllers
             return Ok(productItem);
         }
         [HttpPost]
-        public async Task<ActionResult<OrderDto>> CreateOrder([FromBody] AddProductCommand command)
+        public async Task<ActionResult<ProductDto>> AddProduct([FromBody] AddProductCommand command)
         {
             var product = await _mediator.Send(command);
             return Ok(product);
         }
 
+
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProductDto>> Put(int id, [FromBody] UpdateProductCommand command)
+        public async Task<ActionResult<ProductDto>> UpdateProduct(int id, [FromBody] UpdateProductCommand command)
         {
             command.Id = id;
 
@@ -63,5 +64,15 @@ namespace PresentationalAPI.Controllers
 
             return Ok(product);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id, [FromBody] DeleteProductCommand command)
+        {
+            command.Id = id;
+
+            var product = await _mediator.Send(command);
+
+            return Ok(product);
+        }
+
     }
 }

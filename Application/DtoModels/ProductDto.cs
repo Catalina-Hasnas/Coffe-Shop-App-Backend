@@ -12,7 +12,7 @@ namespace Application.DtoModels
         public int Id { get; set; }
         public int Amount { get; set; }
         public string Image { get; set; }
-        public float Price { get; set; }       
+        public float Price { get; set; }
         public string Title { get; set; }       
         public DateTime CreatedAt { get; set; }
         public CategoryDto Category { get; set; }
@@ -25,6 +25,8 @@ namespace Application.DtoModels
             Amount = product.Amount,
             Image = product.Image,
             CreatedAt = product.CreatedAt,
+            Price = product.Price,
+            Promotion = product.Promotion != null ? PromotionDto.From(product.Promotion) : null
         };
 
     }

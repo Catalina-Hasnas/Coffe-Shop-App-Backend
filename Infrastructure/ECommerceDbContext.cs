@@ -54,9 +54,9 @@ namespace Infrastructure
             );
 
             modelBuilder.Entity<Promotion>().HasData(
-                new Promotion { Id = 1, Discount = 50.55f, PromotionalText = "50.55$ discount", ProductId = 2 },
-                new Promotion { Id = 2, Discount = 20, PromotionalText = "20.00$ discount", ProductId = 9 },
-                new Promotion { Id = 3, Discount = 70.30f, PromotionalText = "70.30$ discount", ProductId = 3 }
+                new Promotion { Id = 1, Discount = 50.55f, PromotionalText = "50.55$ discount"},
+                new Promotion { Id = 2, Discount = 20, PromotionalText = "20.00$ discount"},
+                new Promotion { Id = 3, Discount = 70.30f, PromotionalText = "70.30$ discount"}
             );
 
             modelBuilder.Entity<Client>().ToTable("Clients");

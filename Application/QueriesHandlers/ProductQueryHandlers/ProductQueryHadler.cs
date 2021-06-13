@@ -64,6 +64,7 @@ namespace Application.QueriesHandlers.ProductQueryHandlers
                 },
                 Promotion = result.Promotion == null ? null : new PromotionDto
                 {
+                    Id = result.Promotion.Id,
                     Discount = result.Promotion.Discount,
                     PromotionalText = result.Promotion.PromotionalText
                 }

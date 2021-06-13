@@ -10,7 +10,6 @@ namespace Domain
     {
         public float Discount { get; set; }
         public string PromotionalText { get; set; }
-        public virtual Product Product { get; set; }
-        public int ProductId { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
