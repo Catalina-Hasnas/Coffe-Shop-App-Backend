@@ -50,7 +50,8 @@ namespace Application.QueriesHandlers.ProductQueryHandlers
         public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var result = await _productRepository.GetProductById(request.Id);
-            return new ProductDto {
+
+            return result == null ? null : new ProductDto {
                 Id = result.Id,
                 Amount = result.Amount,
                 Image = result.Image,

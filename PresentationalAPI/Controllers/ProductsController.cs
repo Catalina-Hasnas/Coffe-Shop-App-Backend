@@ -45,6 +45,10 @@ namespace PresentationalAPI.Controllers
                 Id = id
             };
             var productItem = await _mediator.Send(input);
+            if (productItem == null)
+            {
+                return NotFound();
+            }
             return Ok(productItem);
         }
         [HttpPost]
