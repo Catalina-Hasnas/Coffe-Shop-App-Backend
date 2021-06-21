@@ -62,6 +62,11 @@ namespace Application.QueriesHandlers.CategoryQueryHandlers
                     {
                         Id = result.Id,
                         Name = result.Name
+                    },
+                    Promotion = p.Promotion == null ? null : new PromotionDto
+                    {
+                        Discount = p.Promotion.Discount,
+                        PromotionalText = p.Promotion.PromotionalText,
                     }
                 }).ToList()
             };
