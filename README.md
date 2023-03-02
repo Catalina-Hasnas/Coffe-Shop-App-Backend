@@ -9,11 +9,11 @@ To run the Coffee Shop App locally, follow these steps:
 
 Clone the repository to your local machine. 
 
-### Run the project in Visual Studio
+### `Run the project in Visual Studio`
 
 Open the AmdarisBackend.sln file and "Compile and Run".
 
-### Connect to database
+### `Connect to database`
 
 Porvide a connection string in ECommerceDbContext.cs to your SQL Server and run the migrations in order to create a database. 
 
