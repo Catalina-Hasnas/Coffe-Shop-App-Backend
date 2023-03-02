@@ -13,6 +13,10 @@ Clone the repository to your local machine.
 
 Open the AmdarisBackend.sln file and "Compile and Run".
 
+### Connect to database
+
+Porvide a connection string in ECommerceDbContext.cs to your SQL Server and run the migrations in order to create a database. 
+
 Runs the server in the development mode.\
 Open ['https://localhost:44320/api']('https://localhost:44320/api') to view it in the browser and make requests. For example: ['https://localhost:44320/api/products/](https://localhost:44320/api/products/) 
 
